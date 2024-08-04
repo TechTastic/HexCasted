@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "hexcasted",
+  "version": "${version}",
+  "name": "HexCasted",
+  "description": "A Hexcasting x Create Big Cannons Addon",
+  "authors": [
+    "TechTastic"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "MIT License",
+  "icon": "assets/hexcasted/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "io.github.techtastic.hexcasted.fabric.HexCastedFabric"
+      }
+    ],
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "io.github.techtastic.hexcasted.fabric.HexCastedFabric${'$'}Client"
+      }
+    ]
+  },
+  "mixins": [
+    "hexcasted.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "architectury": ">=9.2.14",
+    "fabric-api": "*",
+    "create": ">=0.5.1",
+    "createbigcannons": ">=5.5.0",
+    "hexcasting": ">=0.11.1"
+  }
+}

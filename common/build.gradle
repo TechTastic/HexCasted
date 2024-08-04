@@ -1,0 +1,50 @@
+architectury {
+    common rootProject.enabled_platforms.split(',')
+}
+
+repositories {
+    // mavens for Create Fabric and dependencies
+    maven { url = "https://mvn.devos.one/#/" }
+    maven { url = "https://api.modrinth.com/maven" } // LazyDFU
+    maven { url = "https://maven.terraformersmc.com/releases/" } // Mod Menu
+    maven { url = "https://mvn.devos.one/snapshots/" }
+    // Create Fabric, Forge Tags, Milk Lib, Registrate Fabric
+    maven { url = "https://mvn.devos.one/releases" } // Porting Lib Releases
+    maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" } // Forge config api port
+    maven { url = "https://maven.cafeteria.dev/releases" } // Fake Player API
+    maven { url = "https://maven.jamieswhiteshirt.com/libs-release" } // Reach Entity Attributes
+    maven { url = "https://jitpack.io/" } // Mixin Extras, Fabric ASM
+
+    maven { // Ritchie's Projectile Library
+        url = "https://maven.realrobotix.me/master/"
+        content {
+            includeGroup("com.rbasamoyai")
+        }
+    }
+}
+
+dependencies {
+    // We depend on Fabric Loader here to use the Fabric @Environment annotations,
+    // which get remapped to the correct annotations on each platform.
+    // Do NOT use other classes from Fabric Loader.
+    modImplementation "net.fabricmc:fabric-loader:$fabric_loader_version"
+
+    // Architectury API. This is optional, and you can comment it out if you don't need it.
+    modImplementation "dev.architectury:architectury:$architectury_api_version"
+
+    // Create Fabric
+    modCompileOnly("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}")
+
+    // MixinExtras
+    annotationProcessor(implementation("io.github.llamalad7:mixinextras-common:0.3.5"))
+
+    // Create Big Cannons
+    modImplementation("curse.maven:createbigcannons-646668:5555952")
+    //modImplementation("com.rbasamoyai:ritchiesprojectilelib:2.0.0-dev+mc.${minecraft_version}-common")
+
+    // Patchouli
+    modCompileOnly "vazkii.patchouli:Patchouli:${patchouli_version}-FABRIC"
+
+    // Hexcasting
+    modCompileOnly "at.petra-k.hexcasting:hexcasting-common-1.20.1:${hexcasting_version}"
+}
